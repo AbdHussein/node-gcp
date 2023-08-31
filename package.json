@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node --require ./instrumentation.ts index.ts",
+    "build": "tsc",
+    "start": "node --require ./dist/instrumentation.js dist/index.js",
     "deploy": "gcloud app deploy",
     "test": "jest"
   },
