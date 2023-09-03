@@ -19,8 +19,8 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: google-github-actions/auth@v1
         with:
-          credentials: ${{ secrets.GCP_CREDENTIALS }}
-          project_id: ${{ secrets.GCP_PROJECT }}
+          workload_identity_provider: 'projects/252256009205/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'dominica-294514@appspot.gserviceaccount.com'
 
       - name: Build application
         run: npm install && npm run build
