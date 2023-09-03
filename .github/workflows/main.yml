@@ -22,7 +22,6 @@ jobs:
         id: deploy
         uses: google-github-actions/deploy-appengine@v1.2.7
         with:
-          working_directory: ./dist
           deliverables: app.yaml
           version: v1
           project_id: ${{ secrets.GCP_PROJECT }}

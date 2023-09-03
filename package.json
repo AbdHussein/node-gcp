@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node --require ./instrumentation.ts index.ts",
-    "build": "rm -Rf dist && tsc && cp app.yaml dist/app.yaml",
+    "build": "tsc",
     "start": "node --require ./dist/instrumentation.js dist/index.js",
     "deploy": "gcloud app deploy app.yaml --version=v1 --project=dominica-294514",
     "test": "jest"
