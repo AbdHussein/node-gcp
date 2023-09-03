@@ -15,6 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - id: Auth
+        name: 'Authenticate to Google Cloud'
+        uses: google-github-actions/auth@v1
+        with:
+          credentials: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: ${{ secrets.GCP_PROJECT }}
+
       - name: Build application
         run: npm install && npm run build
 
@@ -25,7 +32,6 @@ jobs:
           deliverables: app.yaml
           version: v1
           project_id: ${{ secrets.GCP_PROJECT }}
-          credentials: ${{ secrets.GCP_CREDENTIALS }}
 
       # Example of using the output
       - id: 'test'
