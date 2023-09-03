@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node --require ./instrumentation.ts index.ts",
-    "build": "tsc",
+    "build": "rm -Rf dist && tsc && cp -R test dist/test",
     "start": "node --require ./dist/instrumentation.js dist/index.js",
     "deploy": "gcloud app deploy app.yaml --version=v1 --project=dominica-294514",
-    "test": "jest"
+    "test": "jest ./dist --runInBand --detectOpenHandles --forceExit --coverage --no-cache"
   },
   "keywords": [],
   "author": "",

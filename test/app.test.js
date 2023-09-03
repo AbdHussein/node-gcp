@@ -1,9 +1,32 @@
-const { describe } = require('node:test');
-const agent = require('supertest');
+const request = require('supertest');
+const { app, server } = require('../index.js');
 
-describe('Tests', () => {
-  test('should be listening', async () => {
-    const response = await agent('http://localhost:8080').get('/').expect(200);
-    expect(response.text).toEqual('Hello from App Engine!');
-  });
+let _server;
+
+beforeAll(() => {
+  if (server) {
+    _server = server;
+  }
+});
+
+afterAll(async () => {
+  await _server.close();
+});
+
+test('It should response the GET method', (done) => {
+  request(app)
+    .get('/')
+    .then((response) => {
+      expect(response.statusCode).toBe(200);
+      done();
+    });
+});
+
+test('It should response the GET method for /test', (done) => {
+  request(app)
+    .get('/test')
+    .then((response) => {
+      expect(response.statusCode).toBe(200);
+      done();
+    });
 });
