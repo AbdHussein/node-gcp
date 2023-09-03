@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: show directory
+        run: ls
+
       - name: Build application
         run: npm run build
 
