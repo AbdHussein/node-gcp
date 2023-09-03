@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: show directory
-        run: ls
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Build application
         run: npm run build
