@@ -11,8 +11,7 @@
     "test": "jest ./dist --runInBand --detectOpenHandles --forceExit --coverage --no-cache",
     "lint": "eslint ./**/*.ts",
     "format": "eslint ./**/*.ts --fix",
-    "pretty": "prettier --write \"./**/*.ts\"",
-    "swagger": "ts-node swagger.ts"
+    "pretty": "prettier --write \"./**/*.ts\""
   },
   "husky": {
     "hooks": {
@@ -34,7 +33,6 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "postgres": "^3.3.5",
-    "swagger-autogen": "^2.23.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "uuidv4": "^6.2.13",
