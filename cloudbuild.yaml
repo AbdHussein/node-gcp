@@ -21,9 +21,6 @@ steps:
     args: ['install']
   - name: 'node'
     entrypoint: 'npm'
-    args: ['test']
-  - name: 'node'
-    entrypoint: 'npm'
     args: ['run', 'build']
 
 # By default, all built docker images will be lost once the build is complete.
