@@ -23,13 +23,6 @@ steps:
     entrypoint: 'npm'
     args: ['run', 'build']
 
-# By default, all built docker images will be lost once the build is complete.
-# Rather than writing a build step to push this image, you can simply list the
-# image below and it will automatically be uploaded to Google Cloud Container
-# Registry.
-images:
-  - 'gcr.io/$PROJECT_ID/node'
-
 # You can organize your builds with tags
 tags: ['gcp-cloud-build-sample-build']
 # You can configure more options than the ones listed here. Visit
