@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-import requestID from 'express-request-id';
 import morgan from 'morgan';
+import { uuid } from 'uuidv4';
 import router from './routes';
 import swaggerDocs from './utils/swagger.util';
 
@@ -11,9 +11,12 @@ app.set('trust proxy', true);
 
 app.use(express.json());
 
-app.use(requestID());
+app.use((req: Request, res: Response, next) => {
+  // @ts-ignore
+  req.id = uuid();
+  next();
+});
 
-// TODO: Refactor to log the request ID
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 app.use('/api/v1', router);

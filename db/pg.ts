@@ -15,8 +15,6 @@ class DB {
       port: Number(db.port) || 5432,
     };
 
-    console.log({ options });
-
     const client = postgres(options);
 
     this.client = drizzle(client, {
