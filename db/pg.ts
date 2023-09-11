@@ -7,13 +7,17 @@ class DB {
 
   constructor() {
     const { db } = config;
-    const client = postgres({
+    const options = {
       database: db.name,
       username: db.user,
       password: db.password,
       host: db.host,
       port: Number(db.port) || 5432,
-    });
+    };
+
+    console.log({ options });
+
+    const client = postgres(options);
 
     this.client = drizzle(client, {
       logger: {

@@ -33,6 +33,7 @@ export const createUser = async (req: Request, res: Response) => {
       token,
     });
   } catch (error) {
+    console.log({ error });
     return res.status(500).json(error);
   }
 };

@@ -2,9 +2,8 @@ name: Deploy to AppEngine
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - master
 
 jobs:
   deploy:
