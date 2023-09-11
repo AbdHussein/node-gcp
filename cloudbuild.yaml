@@ -28,7 +28,7 @@ steps:
 # image below and it will automatically be uploaded to Google Cloud Container
 # Registry.
 images:
-  - 'gcr.io/$PROJECT_ID/helloworld-image'
+  - 'gcr.io/$PROJECT_ID/node'
 
 # You can organize your builds with tags
 tags: ['gcp-cloud-build-sample-build']
