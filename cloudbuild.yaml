@@ -22,6 +22,9 @@ steps:
   - name: 'node'
     entrypoint: 'npm'
     args: ['run', 'build']
+  - name: 'node'
+    entrypoint: 'npm'
+    args: ['run', 'deploy']
 
 # You can organize your builds with tags
 tags: ['gcp-cloud-build-sample-build']
