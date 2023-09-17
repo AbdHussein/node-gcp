@@ -1,9 +1,11 @@
+import { sql } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import config from '../config/environment';
+import logger from '../utils/logger.util';
 
 class DB {
-  client;
+  client: ReturnType<typeof drizzle>;
 
   constructor() {
     const { db } = config;
@@ -15,15 +17,17 @@ class DB {
       port: Number(db.port) || 5432,
     };
 
-    const client = postgres(options);
+    this.client = drizzle(postgres(options));
 
-    this.client = drizzle(client, {
-      logger: {
-        logQuery(query, params) {
-          console.log('SQL Query:', query, params);
-        },
-      },
-    });
+    this.client
+      .execute(sql`SELECT 1;`)
+      .then(() => {
+        logger.info('Database connection established');
+      })
+      .catch((err) => {
+        logger.fatal('Database connection failed', err);
+        process.exit(1);
+      });
   }
 }
 

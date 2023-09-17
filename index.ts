@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
-import morgan from 'morgan';
-import { uuid } from 'uuidv4';
+import { requestMiddleware } from './middlewares';
 import router from './routes';
+import logger from './utils/logger.util';
 import swaggerDocs from './utils/swagger.util';
 
 const app = express();
@@ -11,17 +11,10 @@ app.set('trust proxy', true);
 
 app.use(express.json());
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
-
-app.use((req: Request, res: Response, next) => {
-  // @ts-ignore
-  req.id = uuid();
-  next();
-});
+app.use(requestMiddleware);
 
 app.get('/', (req: Request, res: Response) => {
-  // @ts-ignore
-  return res.send(req.id);
+  return res.send(req.request_id);
 });
 
 app.use('/api/v1', router);
@@ -29,6 +22,10 @@ app.use('/api/v1', router);
 swaggerDocs(app, PORT);
 
 app.use('*', (req: Request, res: Response) => {
+  logger.warn({
+    route: req.url,
+    message: 'Resource not found',
+  });
   return res.status(404).json({
     status: 'error',
     message: 'resource not found',

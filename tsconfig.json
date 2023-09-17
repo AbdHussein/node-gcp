@@ -8,10 +8,15 @@
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,      
-    "resolveJsonModule": true                 
+    "resolveJsonModule": true,
+    "typeRoots": ["./types", "./node_modules/@types"]                
   },
-  "include": ["./"],
+  "include": ["./**/*.ts", "./**/*.d.ts"],
   "exclude":[
-    "./node_modules"
+    "./node_modules",
+    "./dist",
+    "./**/*.spec.ts",
+    "./**/*.test.ts",
+    "./coverage"
   ]
 }

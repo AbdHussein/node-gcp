@@ -1,7 +1,15 @@
 import jwt from 'jsonwebtoken';
 import config from '../config/environment';
+import { Context } from '../types/context';
+import { User } from '../types/user';
+import logger from './logger.util';
 
-export const generateToken = (payload: any): Promise<string> => {
+export const generateToken = (payload: object, ctx: Context): Promise<string> => {
+  logger.http({
+    req_id: ctx.request_id,
+    route: ctx.url,
+    message: 'Generating token',
+  });
   return new Promise((resolve, reject) => {
     jwt.sign(
       payload,
@@ -18,11 +26,11 @@ export const generateToken = (payload: any): Promise<string> => {
   });
 };
 
-export const verifyToken = (token: string) => {
+export const verifyToken = (token: string): Promise<User> => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, config.jwt.secretKey as string, (err, decoded) => {
       if (err) return reject(err);
-      return resolve(decoded);
+      return resolve(decoded as User);
     });
   });
 };
