@@ -26,7 +26,6 @@ class DB {
       })
       .catch((err) => {
         logger.fatal('Database connection failed', err);
-        process.exit(1);
       });
   }
 }
