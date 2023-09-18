@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { requestMiddleware } from './middlewares';
 import router from './routes';
 import logger from './utils/logger.util';
+import pullMessages from './utils/pubsub.util';
 import swaggerDocs from './utils/swagger.util';
 
 const app = express();
@@ -33,7 +34,9 @@ app.use('*', (req: Request, res: Response) => {
 });
 
 const server = app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}...`);
+  logger.info(`Server listening on port ${PORT}...`);
 });
+
+pullMessages().catch(console.error);
 
 export { app, server };
