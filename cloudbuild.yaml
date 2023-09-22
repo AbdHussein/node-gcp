@@ -4,15 +4,15 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/node-js-app']
   - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
     args:
-      - '-c'
-      - |
-        env_vars=$(awk -F= '{ print $1"="$2 }' .env | paste -sd ,)
-        gcloud run deploy node-js-app \
-        --image gcr.io/$PROJECT_ID/node-js-app \
-        --region europe-west1 \
-        --platform managed \
-        --allow-unauthenticated \
-        --set-env-vars $env_vars
+      - 'run'
+      - 'deploy'
+      - 'node-js-app'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/node-js-app'
+      - '--region'
+      - 'europe-west1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
 timeout: '1600s'
