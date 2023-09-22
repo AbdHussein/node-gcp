@@ -7,10 +7,9 @@ steps:
     args:
       - 'run'
       - 'deploy'
+      - 'node-app'
       - '--project'
       - '$PROJECT_ID'
-      - '--service'
-      - 'default'
       - '--image'
       - 'gcr.io/$PROJECT_ID/node-js-app'
       - '--region'
