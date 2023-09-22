@@ -9,6 +9,8 @@ steps:
       - 'deploy'
       - '--project'
       - '$PROJECT_ID'
+      - '--service'
+      - 'default'
       - '--image'
       - 'gcr.io/$PROJECT_ID/node-js-app'
       - '--region'
